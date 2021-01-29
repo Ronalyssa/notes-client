@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ShowNote from './ShowNote'
 import { Card, Icon } from 'semantic-ui-react'
+import { Button, Segment } from 'semantic-ui-react'
+import './App.css';
 
 
 class NotesCard extends Component {
@@ -51,17 +53,31 @@ class NotesCard extends Component {
     
   }
 
+
+  handleDelete = () => {
+
+    const id = this.props.note.id
+
+    fetch(`http://localhost:3000/notes/${id}`, {method: 'DELETE'})
+    .then(resp => resp.json())
+    .then(note => 
+            this.props.deleteNote(this.props.note.id)
+        )
+    }
+
     render() {
       //console.log(this.state)
 
       return (
         <div>
-         <Card>
-          <Card.Content header={this.props.note.title} />
+         <Card >
+          <Card.Content  header={this.props.note.title} />
           <Card.Content description={this.props.note.content} />
           <Card.Content extra>
-          <button onClick={this.handleView} > View </button>
-          <button onClick={this.handleEdit} > edit</button>
+          <Button onClick={this.handleView} inverted color='violet' size='large'>View</Button>
+          <Button onClick={this.handleEdit} inverted color='purple' size='large' >Edit</Button>
+          <Button onClick={this.handleDelete} inverted color='pink' size='large' >Delete</Button>
+
           </Card.Content>
         </Card>
          <ShowNote selectedNote={this.state} deleteNote={this.props.deleteNote}/>

@@ -19,7 +19,7 @@ class App extends Component {
   
   state = {
     notes: [],
-    editNote: true
+    editNote: false
   }
 
   // addNote = (addedNote) => {
@@ -73,11 +73,13 @@ class App extends Component {
      <Router>
         <div className="App">
           <header className="App-header">
-            <LogIn />
+            {/* <LogIn /> */}
             <NavBar notes={this.state.notes}/>
+            <br/><br/><br/>
             {/* <Route exact component={NotesContainer} path={'/notes'} />
             <Route exact component={NotesForm} path={'/notes/new'} /> */}
             <NotesForm postNote={this.postNote}/>
+            <br/><br/>
             { this.state.editNote ? <h2> Edit Form </h2> : null} <br></br>
             <NotesContainer notes={this.state.notes} deleteNote={this.deleteNote} editState={this.editState}  />
       
