@@ -26,6 +26,10 @@ class NotesForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.postNote(this.state)
+        this.setState({
+            title: '',
+            content: ''
+        })
     }
 
     render() {
