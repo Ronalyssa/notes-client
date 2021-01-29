@@ -16,7 +16,7 @@ class NotesContainer extends Component {
     }
     renderNotes = () => {
         return this.props.notes.map(noteObj => {
-            return <NotesCard key={noteObj.id} note={noteObj} />
+            return <NotesCard key={noteObj.id} note={noteObj} deleteNote={this.props.deleteNote} editState={this.props.editState}/>
         })
      }
 

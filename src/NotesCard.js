@@ -30,20 +30,11 @@ class NotesCard extends Component {
 
   }
 
-  deleteNote = (id) => {
-    console.log(this.state)
-   this.setState({
-      title:[],
-      content: [],
-      id: 0
-    })
-    // return updatedNote  const updatedNote =
-  }
-
 
 
   handleEdit = () => {
-    console.log("I want to be updated")
+  
+    this.props.editState(this.props.note)
   //   const id = this.props.note.id
   //   fetch(`http://localhost:3000/notes/${id}`, { 
   //     method: 'PATCH',
@@ -70,10 +61,10 @@ class NotesCard extends Component {
           <Card.Content description={this.props.note.content} />
           <Card.Content extra>
           <button onClick={this.handleView} > View </button>
-          <button onClick={this.handleEdit}> edit</button>
+          <button onClick={this.handleEdit} > edit</button>
           </Card.Content>
         </Card>
-         <ShowNote selectedNote={this.state} deleteNote={this.deleteNote}/>
+         <ShowNote selectedNote={this.state} deleteNote={this.props.deleteNote}/>
         </div>
       );
     }

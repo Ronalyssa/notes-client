@@ -12,12 +12,14 @@ import NotesContainer from './NotesContainer';
 import NavBar from './NavBar'
 import NotesForm from './NotesForm'
 import LogIn from './LogIn'
+import EditForm from './EditForm'
 
 
 class App extends Component {
   
   state = {
-    notes: []
+    notes: [],
+    editNote: true
   }
 
   // addNote = (addedNote) => {
@@ -25,6 +27,21 @@ class App extends Component {
   //       notes: [...this.state.notes, addedNote]
   //     })
   //   }
+
+
+  editState = () => {
+    console.log("hello")
+  }
+
+  deleteNote = (id) => {
+  
+    const updatedNote = this.state.notes.filter(note => note.id !== id)
+   this.setState({
+      notes: updatedNote
+    })
+    // return updatedNote  const updatedNote =
+  }
+
 
   componentDidMount() {
     fetch('http://localhost:3000/notes')
@@ -60,9 +77,10 @@ class App extends Component {
             <NavBar notes={this.state.notes}/>
             {/* <Route exact component={NotesContainer} path={'/notes'} />
             <Route exact component={NotesForm} path={'/notes/new'} /> */}
-
-            <NotesContainer notes={this.state.notes}  />
             <NotesForm postNote={this.postNote}/>
+            { this.state.editNote ? <h2> Edit Form </h2> : null} <br></br>
+            <NotesContainer notes={this.state.notes} deleteNote={this.deleteNote} editState={this.editState}  />
+      
           </header>
         </div>
       </Router>
